@@ -75,10 +75,15 @@ export default function Weather() {
 
   return (
     <div
-      className={`h-screen text-center bg-[url('/images/background/${timeOfDay}.jpg')] bg-cover ${
+      className={`h-screen text-center ${
         startAnimation ? "translate-y-[0vh]" : "translate-y-[200vh]"
       } transition ease-in-out duration-700`}
     >
+      <img
+        className="h-full z-[-5] absolute top-0 left-0"
+        src={`/images/background/${timeOfDay}.jpg`}
+        alt="test"
+      />
       <div className="w-full h-full backdrop-blur-sm">
         <div className="h-full flex flex-col justify-between items-center py-16">
           <div
