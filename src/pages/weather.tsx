@@ -38,6 +38,7 @@ export default function Weather() {
       checkCurrentTime(response.dt);
       setCurrentWeatherResponse(response);
       setIsLoading(false);
+      window.localStorage.setItem("temperature", response.main.temp.toString());
     });
   };
 

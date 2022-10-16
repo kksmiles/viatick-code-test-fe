@@ -34,19 +34,19 @@ export class CurrentWeatherResponse {
   name: string;
   cod: number;
 
-  constructor(userResponse: any) {
-    this.coord = userResponse.coord;
-    this.weather = userResponse.weather;
-    this.base = userResponse.base;
-    this.main = userResponse.main;
-    this.visibility = userResponse.visibility;
-    this.wind = userResponse.wind;
-    this.clouds = userResponse.clouds;
-    this.dt = userResponse.dt;
-    this.sys = userResponse.sys;
-    this.timezone = userResponse.timezone;
-    this.id = userResponse.id;
-    this.name = userResponse.name;
-    this.cod = userResponse.cod;
+  constructor(response: any) {
+    this.coord = response.coord;
+    this.weather = response.weather;
+    this.base = response.base;
+    this.main = response.main;
+    this.visibility = response.visibility;
+    this.wind = response.wind;
+    this.clouds = response.clouds;
+    this.dt = response.dt;
+    this.sys = response.sys;
+    this.timezone = response.timezone;
+    this.id = response.id;
+    this.name = response.name;
+    this.cod = response.cod;
   }
 }
