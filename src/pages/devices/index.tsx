@@ -39,6 +39,7 @@ export default function Index() {
   };
 
   useEffect(() => {
+    document.title = "Viatick - Devices";
     getDevices();
     setTemp(
       Math.round(parseInt(window.localStorage.getItem("temperature") || ""))

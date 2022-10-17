@@ -1,10 +1,11 @@
 import logo from "/images/logo/logo-border.png";
-import Swipable from "./swipable";
+import Swipable from "../components/swipable";
 import { useEffect, useState } from "react";
 
 export default function Welcome() {
   const [startAnimation, setStartAnimation] = useState(false);
   useEffect(() => {
+    document.title = "Viatick - Welcome";
     setTimeout(() => {
       setStartAnimation(true);
     }, 100);

@@ -28,12 +28,12 @@ export default function Show() {
   const minTemp = 6;
   const maxTemp = 34;
 
-  if (window.performance) {
-    let navigationEntry: any = performance.getEntriesByType("navigation")[0];
-    if (navigationEntry.type == "reload") {
-      window.location.href = "/devices";
-    }
-  }
+  // if (window.performance) {
+  //   let navigationEntry: any = performance.getEntriesByType("navigation")[0];
+  //   if (navigationEntry.type == "reload") {
+  //     window.location.href = "/devices";
+  //   }
+  // }
 
   const [isOn, setIsOn] = useState(device.DeviceUser.deviceData.on);
   const handleToggle = () => {
@@ -65,6 +65,7 @@ export default function Show() {
   };
 
   useEffect(() => {
+    document.title = "Viatick - " + device.name;
     return () => {};
   }, []);
 

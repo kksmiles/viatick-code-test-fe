@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CurrentWeatherResponse } from "../models/weather/CurrentWeatherResponse";
 import { Coord } from "../models/weather/Coord";
 import { WeatherApiService } from "../services/WeatherApiService";
-import Swipable from "./swipable";
+import Swipable from "../components/swipable";
 import { useNavigate } from "react-router-dom";
 
 export default function Weather() {
@@ -64,6 +64,7 @@ export default function Weather() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "Viatick - Weather";
     setTimeout(() => {
       setStartAnimation(true);
     }, 100);
