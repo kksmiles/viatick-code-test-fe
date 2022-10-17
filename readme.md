@@ -1,7 +1,7 @@
 Node Version : v16.16.0
 NPM Version : 8.19.2
 
-This scaffolding is created by vite. (npm init vite@latest vite-number-conversion -- --template react-ts)
+This scaffolding is created by vite.
 
 ```
 cp .env.example .env
