@@ -24,9 +24,16 @@ export default function Show() {
   const { device } = location.state;
   const { deviceSlug } = useParams();
   const min = 0.13;
-  const max = 0.87;
-  const minTemp = 16;
-  const maxTemp = 32;
+  const max = 0.86;
+  const minTemp = 6;
+  const maxTemp = 34;
+
+  if (window.performance) {
+    let navigationEntry: any = performance.getEntriesByType("navigation")[0];
+    if (navigationEntry.type == "reload") {
+      window.location.href = "/devices";
+    }
+  }
 
   const [isOn, setIsOn] = useState(device.DeviceUser.deviceData.on);
   const handleToggle = () => {
@@ -49,7 +56,7 @@ export default function Show() {
   );
   const onChange = (p: any) => {
     setValue(valueWithinLimits(p));
-    let v = convertToValue(p);
+    let v = convertToValue(value);
     device.DeviceUser.deviceData.temperature = v;
   };
 
@@ -75,15 +82,18 @@ export default function Show() {
       <div className="h-[85vh] overflow-y-auto scrollbar-hidden">
         {device.slug == "air-conditioner" && (
           <div className="flex justify-center items-center p-12 mt-24">
-            <div className="border-r-gray-200 border-b-gray-200 border-l-red-200 border-t-transparent border-dashed border-8 border-black p-5 rounded-full">
+            <div className="border-r-gray-200 border-b-gray-200 border-l-red-200 border-t-transparent border-dashed border-8 border-black p-5 rounded-full relative flex justify-center items-center">
+              <span className="absolute left-0 top-6 text-gray-500">30</span>
+              <span className="absolute -bottom-10 text-gray-500">25</span>
+              <span className="absolute right-0 top-6 text-gray-500">10</span>
               <span
-                className="absolute mt-20 ml-20 p-2 cursor-pointer"
+                className="absolute p-2 cursor-pointer"
                 onClick={handleToggle}
               >
                 <FontAwesomeIcon
                   icon={faPowerOff}
                   className={`"w-16 h-16 ${
-                    isOn ? "text-green-500" : "text-red-500"
+                    isOn ? "text-cyan-800" : "text-red-800"
                   }`}
                 />
               </span>
@@ -93,8 +103,8 @@ export default function Show() {
                 onChange={(v) => onChange(v)}
                 onChangeEnd={(v) => onChangeEnd(v)}
               >
-                <CircularTrack />
-                <CircularProgress />
+                <CircularTrack stroke="#ebebeb" />
+                <CircularProgress stroke="#c6c6c6" />
               </CircularInput>
             </div>
           </div>

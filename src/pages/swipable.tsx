@@ -41,13 +41,17 @@ export default function Swipable({ isVertical, url }: ISwipableProps) {
     }
   };
 
-  const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientY);
+  const onTouchMove = (e: any) =>
+    setTouchEnd(
+      isVertical ? e.targetTouches[0].clientY : e.targetTouches[0].clientX
+    );
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    const distance = Math.abs(touchStart - touchEnd);
-    const isSwipe = distance > minSwipeDistance;
-    console.log(distance);
+    const distance = touchStart - touchEnd;
+    const isSwipe = isVertical
+      ? distance > minSwipeDistance
+      : distance < -minSwipeDistance;
     if (isSwipe) navigate(url);
   };
   return (

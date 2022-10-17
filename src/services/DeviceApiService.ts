@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GetUserDevicesResponse } from "../models/device/GetUserDevicesResponse";
+import { GetUserDeviceHistoriesResponse } from "../models/device/GetUserDeviceHistoriesResponse";
 
 const API_URL: string = import.meta.env.VITE_API_URL;
 
@@ -8,7 +9,7 @@ export class DeviceApiService {
     userSlug: string,
     callback: (getUserDevicesResponse: GetUserDevicesResponse) => any
   ) {
-    let GET_USER_DEVICES_URL: string = `${API_URL}/api/device_users/${userSlug}/devices`;
+    const GET_USER_DEVICES_URL: string = `${API_URL}/api/device_users/${userSlug}/devices`;
 
     axios
       .get(GET_USER_DEVICES_URL, {
@@ -26,7 +27,7 @@ export class DeviceApiService {
   }
 
   updateDeviceData(deviceId: number, deviceData: any) {
-    let STORE_DEVICE_DATA_URL: string = `${API_URL}/api/device_users`;
+    const STORE_DEVICE_DATA_URL: string = `${API_URL}/api/device_users`;
 
     axios
       .post(STORE_DEVICE_DATA_URL, {
@@ -34,8 +35,30 @@ export class DeviceApiService {
         DeviceId: deviceId,
         deviceData: deviceData,
       })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  }
+
+  getDeviceUserHistories(
+    deviceUserId: number,
+    fromTime: Date,
+    toTime: Date,
+    callback: (
+      getUserDeviceHistoriesResponse: GetUserDeviceHistoriesResponse
+    ) => any
+  ) {
+    const fromTimeStr = fromTime.toISOString();
+    const toTimeStr = toTime.toISOString();
+    const FETCH_DEVICE_USER_HISTORY_URL: string = `${API_URL}/api/device_users/${deviceUserId}/histories?fromTime=${fromTimeStr}&toTime=${toTimeStr}`;
+
+    axios
+      .get(FETCH_DEVICE_USER_HISTORY_URL)
       .then((response: any) => {
-        console.log(response);
+        let getUserDeviceHistoriesResponse = new GetUserDeviceHistoriesResponse(
+          response.data
+        );
+        callback(getUserDeviceHistoriesResponse);
       })
       .catch((error: any) => {
         console.error(error);

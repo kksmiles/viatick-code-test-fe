@@ -5,14 +5,20 @@ import { Link } from "react-router-dom";
 interface IDeviceCardProps {
   device: any;
   svc: DeviceApiService;
+  setDeviceCount: any;
 }
 
-export default function DeviceCard({ device, svc }: IDeviceCardProps) {
+export default function DeviceCard({
+  device,
+  svc,
+  setDeviceCount,
+}: IDeviceCardProps) {
   const [isOn, setIsOn] = useState(device.DeviceUser.deviceData.on);
 
   const handleToggle = () => {
     setIsOn(!isOn);
     device.DeviceUser.deviceData.on = !isOn;
+    setDeviceCount((prev: any) => prev + (isOn ? -1 : 1));
     svc.updateDeviceData(device.id, device.DeviceUser.deviceData);
   };
 
