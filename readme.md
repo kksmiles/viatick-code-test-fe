@@ -4,7 +4,7 @@ NPM Version : 8.19.2
 This scaffolding is created by vite. (npm init vite@latest vite-number-conversion -- --template react-ts)
 
 ```
-cp .env.exmaple .env
+cp .env.example .env
 ```
 
 Update VITE_WEATHER_API_KEY inside .env with the api key from https://openweathermap.org
