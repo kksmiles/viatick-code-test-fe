@@ -88,7 +88,7 @@ export default function Graph({ deviceUserIds, svc }: IGraphProps) {
         {todayEnergyUsage}kw
       </span>
       <div className="overflow-y-auto h-[85%] mt-3">
-        <div className="w-[300vw] h-full flex flex-row justify-between">
+        <div className="w-[96rem] h-full flex flex-row justify-between">
           {ranges.map((range, index) => {
             let hours = new Date(range).getHours();
             let maxUsage = Math.max(...hourlyEnergyUsage, 40);
